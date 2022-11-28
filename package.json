@@ -1,7 +1,7 @@
 {
   "name": "@thetc/zonfig",
   "version": "0.1.0",
-  "description": "",
+  "description": "A simple library to define schemas for configs.",
   "main": "dist/index.js",
   "types": "dist/index.d.js",
   "scripts": {
