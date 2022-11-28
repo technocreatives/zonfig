@@ -1,0 +1,45 @@
+{
+  "name": "@thetc/zonfig",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.js",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "tsc -p tsconfig.json",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "format-check": "prettier --check src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/technocreatives/zonfig.git"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "keywords": [
+    "config",
+    "nestjs",
+    "typescript",
+    "zod"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/technocreatives/zonfig/issues"
+  },
+  "homepage": "https://github.com/technocreatives/zonfig#readme",
+  "devDependencies": {
+    "@nestjs/testing": "^9.2.0",
+    "@types/jest": "^29.2.3",
+    "@types/lodash": "^4.14.190",
+    "@types/node": "^18.11.9",
+    "prettier": "^2.8.0",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "zod": "^3.19.1"
+  }
+}
