@@ -46,7 +46,7 @@ export class BackendConfig extends ZonfigService(Config) {}
 export const backendConfig = BackendConfig.fromEnv();
 ```
 
-The class `BackendConfig` above has default values for `nodeEnv` and `port`. If you have a `.env` file in your project, the values for `NODE_ENV` and `PORT` will overwrite those default values.
+The class `BackendConfig` above has default values for `nodeEnv` and `port`. If you have a `.env` file in your project, the values for `NODE_ENV` and `PORT` will overwrite those default values. You can use [dotenv](https://github.com/motdotla/dotenv) to load the `.env` files.
 
 After define the schema and load the values, you are able to use the class in your code, like:
 
@@ -64,6 +64,49 @@ async function bootstrap() {
   await app.listen(3000);
 }
 bootstrap();
+```
+
+### Generate documentation
+
+There is other interesting feature in this library. You can generate documentation from your configuration schema. See the example below that uses `zodObjectToMarkdown` to generate the `CONFIG.md` file.
+
+```ts
+let docs = "";
+docs += "<!-- This file is generated -->\n\n";
+docs += `# Configuration values\n\n`;
+
+const configs = sortBy(Array.from(CONFIG_REGISTRY.values()), "name");
+for (const { name, prefix, schema } of configs) {
+    docs += zodObjectToMarkdown(name, prefix, schema);
+    docs += "\n\n";
+}
+
+const fileName = "CONFIG.md";
+await writeFile(fileName, docs)
+    .then(() => {
+        console.log(`Wrote config definition to ${fileName}`);
+    })
+    .catch((e) => {
+        console.log(`Could not write config definition to ${fileName}`, e,);
+    });
+```
+
+Result (CONFIG.md):
+
+```md
+<!-- This file is generated -->
+
+# Configuration values
+
+## Backend
+
+General configuration with default values.
+
+| Name | Environment variable | Type | Default | Description |
+| ---- | -------------------- | ---- | ------- | ----------- |
+| nodeEnv | `NODE_ENV` | String? | `development` | Set the environment. |
+| port | `PORT` | Number? | `3001` | The server listens on this port. |
+
 ```
 
 ## License
