@@ -2,6 +2,10 @@
 
 A simple library to define schemas for configs.
 
+[![NPM version](https://img.shields.io/npm/v/@thetc/zonfig.svg?style=flat-square)](https://www.npmjs.com/package/@thetc/zonfig)
+![Node version](https://img.shields.io/node/v/@thetc/zonfig?style=flat-square)
+![License](https://img.shields.io/npm/l/@thetc/zonfig?flat-square)
+
 ## Idea
 
 The goal of this is to define a schema for configs instead of just fetching values out of thin air whenever we need them. This way we can define, per module, the config values we need, and don't have to keep track of random strings.
